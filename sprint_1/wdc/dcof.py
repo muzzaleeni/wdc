@@ -1,4 +1,4 @@
-from .dbcf import DatabaseConnection
+from dbcf import DatabaseConnection
 
 class Datacube:
     def __init__(self, dbc):

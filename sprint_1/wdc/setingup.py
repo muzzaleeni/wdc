@@ -1,4 +1,6 @@
-from wdc import Datacube, DatabaseConnection
+# from wdc import Datacube, DatabaseConnection
+from dbcf import DatabaseConnection
+from dcof import Datacube
 
 def main():
     server_url = 'https://ows.rasdaman.org/rasdaman/ows'
