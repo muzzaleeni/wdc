@@ -7,32 +7,7 @@ import io
 dbc = DatabaseConnection()
 
 dco = Datacube(dbc, coverage_id='AvgTemperatureColorScaled', encode='image/png')
-
 #---------------------------- 1 -----------------------------#
-data = dco.get('2014-07')
-# Image(data)
-
-# Convert the image data to a format compatible with Matplotlib
-image = plt.imread(io.BytesIO(data))
-# Display the image using Matplotlib
-plt.imshow(image)
-plt.axis('off')  # Optional: Turn off axis
-# plt.show()
-
-#---------------------------- 2 -----------------------------#
-#modifying functionalities
-modif_ans1 = {"ansi": "2000-02-01"}
-
-subset_dc = dco.slice(modif_ans1)
-data1 = subset_dc.execute()
-# Image(data)
-image1 = plt.imread(io.BytesIO(data1))
-# Display the image using Matplotlib
-plt.imshow(image1)
-plt.axis('off')  # Optional: Turn off axis
-# plt.show()
-
-#---------------------------- 3 -----------------------------#
 #modifying functionalities
 dco1 = Datacube(dbc, coverage_id='AvgTemperatureColorScaled', encode='image/png')
 modif_ans2 = {"ansi": "2000-04"}
@@ -45,7 +20,7 @@ image2 = plt.imread(io.BytesIO(data2))
 plt.imshow(image2)
 plt.axis('off')  # Optional: Turn off axis
 plt.show()
-#---------------------------- 5 -----------------------------#
+#---------------------------- 2 -----------------------------#
 dco_2 = Datacube(dbc, coverage_id='AvgLandTemp', encode='text/csv')
 subset = {"ansi": ("2014-01", "2014-12"), "Lat": (53.08), "Lon": (8.80)}
 dco_1D = dco_2.slice(subset)
@@ -61,6 +36,33 @@ plt.ylabel('Value')
 plt.title(f'{dco_1D.coverage_id}')
 plt.grid(True)
 # plt.show()
+
+#---------------------------- 3 -----------------------------#
+data = dco.get('2014-07')
+# Image(data)
+
+# Convert the image data to a format compatible with Matplotlib
+image = plt.imread(io.BytesIO(data))
+# Display the image using Matplotlib
+plt.imshow(image)
+plt.axis('off')  # Optional: Turn off axis
+# plt.show()
+
+#---------------------------- 4 -----------------------------#
+#modifying functionalities
+modif_ans1 = {"ansi": "2000-02-01"}
+
+subset_dc = dco.slice(modif_ans1)
+data1 = subset_dc.execute()
+# Image(data)
+image1 = plt.imread(io.BytesIO(data1))
+# Display the image using Matplotlib
+plt.imshow(image1)
+plt.axis('off')  # Optional: Turn off axis
+# plt.show()
+
+
+
 
 #---------------------------- 6 -----------------------------#
 #Failing cannot be covered by the server
