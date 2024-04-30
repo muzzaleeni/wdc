@@ -18,4 +18,3 @@ class DatabaseConnection:
                 return response.content
         else:
             print("Fail !!!", response.status_code, response.text)
-
