@@ -1,6 +1,6 @@
 
 from wdc.dbc import DatabaseConnection
-from wdc.imports.coverages import ProcessCoverage, DescribeCoverage, Coverages, Capacities
+from wdc.imports.coverages import ProcessCoverage, Coverage_id, Coverages, Capacities
 from wdc.src.operation import Operation
 from typing import List, Tuple
 
@@ -69,7 +69,7 @@ class Datacube:
         Returns:
             dict: The description of the datacube.
         """
-        describe_request = DescribeCoverage(self.connection, self.coverage_id)
+        describe_request = Coverage_id(self.connection, self.coverage_id)
         return describe_request.describe(cis)
 
     def get(self, subset: str = None) -> bytes:
