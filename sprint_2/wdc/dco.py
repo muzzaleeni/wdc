@@ -1,6 +1,5 @@
-
 from wdc.dbc import DatabaseConnection
-from wdc.imports.coverages import ProcessCoverage, Coverage_id, Coverages, Capacities
+from wdc.wrapper.coverages import ProcessCoverage, Coverage_id, Coverages, Capacities
 from wdc.src.operation import Operation
 from typing import List, Tuple
 
