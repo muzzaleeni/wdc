@@ -1,5 +1,5 @@
-from .dbcf import DatabaseConnection
-from .dcof import Datacube
+from dbcf import DatabaseConnection
+from dcof import Datacube
 from IPython.display import Image
 from typing import Tuple, Optional
 import requests
