@@ -85,6 +85,8 @@ Follow the usage example to be able to use the functionalities of the package [j
 
 [1]: https://github.com/Constructor-Uni-SE-non-official/Sprint2_Pair4/blob/main/sprint_2/jupyter_notebook/WDC.ipynb "jupyter_notebook"
 
+# Tests
+
 # Methods', clases' functionality specification
 
 ## DatabaseConnection object
@@ -180,3 +182,16 @@ get_coverage
 __init__(self, op_type: str, operands: List, **kwargs)
     Encapsulate information about an action to be performed on a datacube.
 ```
+
+## WDC Playground
+
+- To see the exapmles explained in the jupyter notebook:
+  - clone the repository, link in the Installation Guide
+  - install requirements.txt
+  - cd sprint_2
+  - On Unix
+    - python3 wdc_playground.py
+  - In windows
+    - python wdc_playground.py
+
+# Lazy-user interaction
