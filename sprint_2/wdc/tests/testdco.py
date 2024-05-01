@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import Mock
 import sys
 sys.path.append("..")
-from wdc.dco import Datacube
+from dco import Datacube
 
 # Class to test Datacube class and it's methods
 class TestDatacube(unittest.TestCase):
