@@ -81,7 +81,7 @@ Before you start running the code you would need to import some libraries in pyt
 
     # cd to sprint_2
 
-    # Follow the usage example to be able to use the functionalities of the package [jupyter_notebook][1].
+Follow the usage example to be able to use the functionalities of the package [jupyter_notebook][1].
 
 [1]: https://github.com/Constructor-Uni-SE-non-official/Sprint2_Pair4/blob/main/sprint_2/jupyter_notebook/WDC.ipynb "jupyter_notebook"
 
