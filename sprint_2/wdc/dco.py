@@ -1,6 +1,6 @@
 from wdc.dbc import DatabaseConnection
 from wdc.wrapper.coverages import ProcessCoverage, Coverage_id, Coverages, Capacities
-from wdc.src.operation import Operation
+from wdc.src.action import Action 
 from typing import List, Tuple
 
 class Datacube:
@@ -54,7 +54,6 @@ class Datacube:
 
         # Execute the query and return the result
         get_request = ProcessCoverage(self.connection, query=query)
-        print(query)
         # Reset the covExpr attribute so that we can run execute multiple times
         self.covExpr = "$c"
         return get_request.fetch_coverage()
@@ -85,17 +84,17 @@ class Datacube:
 
     def slice(self, slices: dict = None) -> str:
         """
-        Subset the datacube based on the given slices.
+        Slice the datacube based on the given data.
         Args:
             slices (dict): A dictionary containing the slices for each axis.
         """
         # We create a new operation object and append it to the list of operations
-        op = Operation('subset', [self], slices=slices)
+        op = Action('subset', [self], slices=slices)
         self.operations.append(op)
         return self
 
 
-    def _apply_operation(self, op: Operation) -> str:
+    def _apply_operation(self, op: Action) -> str:
         """
         Apply the given operation to the WCPS query.
         """
