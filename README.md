@@ -60,8 +60,8 @@ The response is processed and saved in corresponding format.
 |         |           |----\src\
 |         |           |         |---operation.py
 |         |           |----\test\
-|         |           |         |---testdbc.py
-|         |           |         |---testdbo.py
+|         |           |         |---
+|         |           |         |---
 |         |           |----\wrapper\
 |         |                        |---.DS_Store
 |         |                        |---coverages.py
@@ -195,3 +195,22 @@ __init__(self, op_type: str, operands: List, **kwargs)
     - python wdc_playground.py
 
 # Lazy-user interaction
+
+In order to send queries to the server without the effort of creating a DatabaseConnection, and adding the parameters of the Datacube manually,
+you can see the result of many quries stored on lazyuser/queries.py by doing the following:
+
+    1- Follow the Installation guide to clone and install requirements
+    2- cd sprint_2/wdc
+    3- python3 -m lazyuser.run_queries
+
+The results are stored in lazyuser/outputs
+
+## For making use of the Lazy-user feature, and also select the queries you want to get the results from:
+
+    1- Follow the Installation guide to clone the repo and install the requirements.
+    2- cd sprint_2/wdc
+    3-python3 -m lazyuser.user_select
+
+Follow the documentation to see the exact usage and results [jupyter_notebook][1].
+
+[1]: https://github.com/Constructor-Uni-SE-non-official/Sprint2_Pair4/blob/main/sprint_2/jupyter_notebook/WDC.ipynb "jupyter_notebook"
