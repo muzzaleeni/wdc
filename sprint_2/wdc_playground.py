@@ -63,4 +63,22 @@ plt.imshow(image1)
 plt.axis('off')  # Optional: Turn off axis
 plt.show()
 
+#---------------------------- 5 -----------------------------#
+datacube1 = Datacube(con, coverage_id='AvgLandTemp', encode='text/csv')
+subset = {"ansi": ("2014-01", "2016-12"), "Lat": (53.08), "Lon": (8.80)}
+slice_datacube1 = datacube1.slice(subset)
+data_bytes = slice_datacube1.execute()
+data_str = data_bytes.decode('utf-8')
+y_values = [float(val) for val in data_str.split(',')]
+
+x_values = range(len(y_values))
+
+plt.plot(x_values, y_values)
+plt.xlabel('Index')
+plt.ylabel('Value')
+plt.title(f'{slice_datacube1.coverage_id}')
+plt.grid(True)
+plt.show()
+#  raise HTTPError(http_error_msg, response=self)
+# requests.exceptions.HTTPError: 404 Client Error:  for url: https://ows.rasdaman.org/rasdaman/ows?service=WCS&version=2.1.0&request=ProcessCoverage&query=for%20%24c%20in%20%28AvgLandTemp%29%20return%20encode%28%24c%5Bansi%28%222014-01%22%3A%222016-12%22%29%2C%20Lat%2853.08%29%2C%20Lon%288.8%29%5D%2C%20%22text/csv%22%29
 
