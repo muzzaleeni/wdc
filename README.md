@@ -123,6 +123,7 @@ execute(self):
 ```
 
 ```
+coverages.py -> Handles retrieving of the reponses from the server and proccessing that response depending on its type.
 ## Coverages
  __init__
  Parameters:
