@@ -5,7 +5,7 @@
     The first sprint was hardcoding one query, the one in example on Teams channel, so the only functions we could make use of were the DataBaseConnection and some code from the Datacube object
     The parameters of the __init__ function of the CoverageQuery class from the sprint_1/wdc/connectionras.py have been integrated in sprint_2/wdc/wrapper/coverages.py classes and functions
 
-- connectionras.py/ class CoverageQuery:
+- sprint_1/connectionras.py/ class CoverageQuery:
 
   - self.base_wcs_url = base_wcs_url
   - self.base_wcps_url = base_wcps_url
@@ -15,7 +15,7 @@
   - self.spatial_subset_n = None
   - self.format = "image/jpeg"
 
-- wrapper/Coverages:
+- sprint_2/wdc/wrapper/Coverages:
   - request_url = f"{self.base_wcs_url}&request=GetCoverage&coverageId={self.coverage_id}&FORMAT={self.output_format}
   - self.connection = connection
   - self.coverage_id = coverage_id
@@ -25,16 +25,21 @@
 ## Added files and directories
 
 - 1- /jupyter_notebook/WDC.ipynb
-- 2- /src/ operation.py
-- 3- /test/
+- 2- /src/ action.py
+- 3- /tests/
 - 4- /wrapper/ coverages.py
 - 5- wdc_playground.py
+- 6- /lazyuser/**init**.py, lazyuserdco.py, user_select.py, queries.py
+- 7- requirements.txt
+- 8- README.md
 
 ## Removed files and directories
 
 - 1- /**pyscache**/
 - 2- setingup.py
 - 3- connectionras.py
+
+---
 
 # Sprint 2
 
@@ -58,13 +63,18 @@ The response is processed and saved in corresponding format.
 |         |           |---dco.py
 |         |           |---dbc.oy
 |         |           |----\src\
-|         |           |         |---operation.py
+|         |           |         |---action.py
 |         |           |----\test\
 |         |           |         |---
 |         |           |         |---
 |         |           |----\wrapper\
-|         |                        |---.DS_Store
-|         |                        |---coverages.py
+|         |           |            |---.DS_Store
+|         |           |            |---coverages.py
+|         |           |-----\lazyuser\
+|         |                          |---lazyuserdco.py
+|         |                          |---queries.py
+|         |                          |---run_queries.py
+|         |                          |---user_select.py
 |         |--- requirements.txt
 |         |--- wdc_playground.py
 |-------- README.md
