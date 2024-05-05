@@ -58,7 +58,8 @@ The response is processed and saved in corresponding format.
 \--Sprint2_Pair4\
 |--------\--sprint_2\
 |         |----\--jupyter_notebook\
-|         |                       |---WDC.ipynb
+|         |           |---WDC.ipynb
+|         |           |----\outputs\
 |         |----\--wdc\
 |         |           |---dco.py
 |         |           |---dbc.oy
@@ -96,6 +97,23 @@ Follow the usage example to be able to use the functionalities of the package [j
 [1]: https://github.com/Constructor-Uni-SE-non-official/Sprint2_Pair4/blob/main/sprint_2/jupyter_notebook/WDC.ipynb "jupyter_notebook"
 
 # Tests
+
+All testing-related files are found in the \tests directory inside \wdc. There are two files, testdbc.py and testdco.py, which test the DatabaseConnection and DataCube classes respectively.
+
+Running the tests is easy. In your terminal, after cloning the repository, simply cd to the sprint_2 folder, and run either of the two files, depending on which class you wish to test:
+
+```
+python3 wdc/tests/testdbc.py
+python3 wdc/tests/testdco.py
+```
+
+There is a known bug in python where test files cannot read packages outside the test folder. If this happens to you, a simple fix is to change the
+
+```
+sys.path.append("..")
+```
+
+line (line 3 for testdbc and 4 for testdco) to import the absolute path of sprint_2/wdc.
 
 # Methods', clases' functionality specification
 
