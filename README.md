@@ -59,7 +59,6 @@ The response is processed and saved in corresponding format.
 |--------\--sprint_2\
 |         |----\--jupyter_notebook\
 |         |           |---WDC.ipynb
-|         |           |----\outputs\
 |         |----\--wdc\
 |         |           |---dco.py
 |         |           |---dbc.oy
