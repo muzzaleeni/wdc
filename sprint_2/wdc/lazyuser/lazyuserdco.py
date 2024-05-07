@@ -10,7 +10,7 @@ connection=DatabaseConnection
 #datacube object which connect to the database conection object
 class Datacube:
     def __init__(self):
-        self.database_connection = DatabaseConnection()
+        self.database_connection = DatabaseConnection("https://ows.rasdaman.org/rasdaman/ows")
         self.base_wcs_url = self.database_connection.base_wcs_url
 
     def execute_query(self, query):
