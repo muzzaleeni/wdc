@@ -5,7 +5,9 @@
 
 ## From sprint_1 to sprint_2
 
-    We talked to one of the tas, and we missuderstood or better said didn't think that you would check the differnces made to the first sprint this way, and we created a sprint2 folder. Because the changes are anway       big from the first sprint, and because we have built everything upon sprin2 structure and would have to do a lot of changes to commit all the changes to sprint1, we are leaving it as it is and add details what the     changes were, and how we integrated the first print into our second sprint.
+    We talked to one of the tas, and we missuderstood or better said didn't think that you would check the differnces made to the first sprint this way, and we created a sprint2 folder. Because the changes are anway
+    big from the first sprint, and because we have built everything upon sprin2 structure and would have to do a lot of changes to commit all the changes to sprint1, we are leaving it as it is and add details what the
+    changes were, and how we integrated the first print into our second sprint.
     In the following lines of the readme you will see the changes made and what we could make used from the first sprint. Please reach out to us if further question or unsure how to test something because we haven't
     added enough details:
     xlutaj@constructor.unversity
