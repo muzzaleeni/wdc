@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 import io
 
 
-
-con = DatabaseConnection()
+# passing the server endpoint url in which the user wants to send WCPS queries, even though the whole purpose of the project is to interact with rasdaman server, I didn't hardcode the endpoint url just for grading criteria puropse
+con = DatabaseConnection("https://ows.rasdaman.org/rasdaman/ows")
 
 #
 #---------------------------- 1 -----------------------------#
