@@ -1,7 +1,5 @@
 import unittest
-import sys
-sys.path.append("..")
-from dbc import DatabaseConnection
+from src.dbc import DatabaseConnection
 
 # Very simple test class for the Database Connection object
 class TestDatabaseConnection(unittest.TestCase):

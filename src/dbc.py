@@ -1,4 +1,3 @@
-
 class DatabaseConnection:
     """A class representing a database connection to the WCPS server"""
 

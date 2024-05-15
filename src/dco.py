@@ -1,6 +1,6 @@
-from src.dbc import DatabaseConnection
-from Sprint3_Pair4.sprint_3.src.coverages import ProcessCoverage, Coverage_id, Coverages, Capacities
-from Sprint3_Pair4.sprint_3.src.action import Action 
+from dbc import DatabaseConnection
+from coverages import ProcessCoverage, Coverage_id, Coverages, Capacities
+from action import Action 
 from typing import List, Tuple
 
 class Datacube:

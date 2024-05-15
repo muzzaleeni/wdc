@@ -1,6 +1,6 @@
 from src.dbc import DatabaseConnection
 from typing import Optional
-from Sprint3_Pair4.sprint_3.src.main import dbc
+import dbc
 import requests
 import xml.etree.ElementTree as ET
 import urllib.parse

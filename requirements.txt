@@ -1,0 +1,9 @@
+ipython
+requests
+owslib 
+numpy 
+scipy 
+Pillow 
+matplotlib
+pandas
+nbformat
