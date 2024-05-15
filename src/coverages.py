@@ -1,6 +1,5 @@
-from src.dbc import DatabaseConnection
+from dbc import DatabaseConnection
 from typing import Optional
-import dbc
 import requests
 import xml.etree.ElementTree as ET
 import urllib.parse
@@ -38,12 +37,10 @@ class Coverages:
             request_url += f"&SUBSET=ansi(\"{self.subset}\")"
         return request_url
 
-    def __init__(self, connection: object, coverage_id: str, subset: Optional[str] = None, output_format: str = None):
+    def __init__(self, connection: DatabaseConnection, coverage_id: str, subset: Optional[str] = None, output_format: str = None):
         """
         Initializes a Coverages object to fetch a coverage with the given ID.
         """
-        # Ensure the connection object is of the correct type
-        assert isinstance(connection, DatabaseConnection)
         # Set attributes for connection details and coverage information
         self.connection = connection
         self.coverage_id = coverage_id
@@ -59,12 +56,11 @@ class Coverages:
 
 class Coverage_id:
     
-    def __init__(self, connection: object, coverage_id: str):
+    def __init__(self, connection: DatabaseConnection, coverage_id: str):
         """
         Initializing the object with connection details and coverage ID.
         """
         # Ensure the connection object is of the correct type
-        assert isinstance(connection, dbc.DatabaseConnection)
         # Set the base WCS URL and request parameters
         self._base_wcs_url = connection.base_wcs_url
         self._request = '&request=DescribeCoverage'
@@ -154,9 +150,7 @@ class ProcessCoverage:
     Processing a coverage on the server.
     """
     # Upon initialization, we receive the connection object and the query to be processed.
-    def __init__(self, connection: object, query: str) -> None:
-        # Ensure that the connection object is of the correct type
-        assert isinstance(connection, DatabaseConnection)
+    def __init__(self, connection: DatabaseConnection, query: str) -> None:
          # Set the base WCS URL and the query
         self.base_wcs_url = connection.base_wcs_url
         self.query = query
@@ -188,14 +182,12 @@ class Capacities:
       Handles Capacities requests.
     """
 
-    def __init__(self, connection: object):
+    def __init__(self, connection: DatabaseConnection):
         """
         Initialize Capacities object with connection details.
         Args:
           connection (database_connection.DatabaseConnection): The connection object to the database.
         """
-        # Ensure the connection object is of the correct type
-        assert isinstance(connection, dbc.DatabaseConnection)
         # Set the base WCS URL and request parameters
         self._base_wcs_url = connection.base_wcs_url
         self._request = '&request=GetCapabilities'

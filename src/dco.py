@@ -8,7 +8,7 @@ class Datacube:
     Datacube object to ineract with rasdaman, retrieve, manipulate datacubes.
         """
 
-    def __init__(self, connection: object, coverage_id: str, encode: str = None):
+    def __init__(self, connection: DatabaseConnection, coverage_id: str, encode: str = None):
         """
         Initializing the datacube object, details:
                 --connection
@@ -19,7 +19,6 @@ class Datacube:
         Initializing an empty list operations to store operations to be applied to the datacube.
         Setting the initial value of covExpr attribute to "$c", which represents the coverage expression.
                 """
-        assert isinstance(connection, DatabaseConnection)
         self.connection = connection
         self.coverage_id = coverage_id
         self._info = self.data()
