@@ -1,3 +1,6 @@
+import sys
+sys.path.append("./src")
+
 import unittest
 from unittest.mock import Mock
 from src.dco import Datacube

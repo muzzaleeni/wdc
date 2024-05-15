@@ -1,3 +1,6 @@
+import sys
+sys.path.append("./src")
+
 import unittest
 from src.dbc import DatabaseConnection
 

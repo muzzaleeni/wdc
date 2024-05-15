@@ -5,20 +5,21 @@ from typing import List, Tuple
 
 class Datacube:
     """
-    Datacube object to ineract with rasdaman, retrieve, manipulate datacubes.
-        """
+    Represents a datacube and provides methods for interacting with it.
+    """
 
     def __init__(self, connection: DatabaseConnection, coverage_id: str, encode: str = None):
         """
-        Initializing the datacube object, details:
-                --connection
-                --coverage_id
-                --optional parameter for encoding
-        Ensuring that the provided connection object is an instance of DatabaseConnection.
-        Retrieving information about the datacube using the data() method.
-        Initializing an empty list operations to store operations to be applied to the datacube.
-        Setting the initial value of covExpr attribute to "$c", which represents the coverage expression.
-                """
+        Initializes a Datacube object.
+
+        Args:
+            connection (DatabaseConnection): The connection object to the database.
+            coverage_id (str): The ID of the coverage associated with the datacube.
+            encode (str, optional): The encoding format for the data. Defaults to None.
+        
+        Raises:
+            ValueError: If an invalid encoding format is provided.
+        """
         self.connection = connection
         self.coverage_id = coverage_id
         self._info = self.data()
@@ -30,64 +31,75 @@ class Datacube:
 
     def _generate_wcps_query(self) -> str:
         """
-        Given supported operations, generating queries ($c represents the coverage epression)
+        Generates a WCPS query based on the specified operations.
+
+        Returns:
+            str: The WCPS query.
         """
         query = f"for $c in ({self.coverage_id}) return "
-        # For each operation in the list, apply the operation to the query
         for op in self.operations:
             return_query = f"{self._apply_operation(op)}"
-        # Once all operations have been put together, we encode the query with the specified encoding
         return_query = self.encode_format(return_query)
-        # Finally, add it to the first part of the query
         query += return_query
         return query
 
     def execute(self):
         """
-        Calling the generate funtion and executing the query
+        Executes the generated WCPS query and fetches the coverage data.
+
+        Returns:
+            bytes: The fetched coverage data.
+        
+        Raises:
+            ValueError: If no operations are specified.
         """
         if not self.operations:
             raise ValueError("No operations specified")
-        # Code to generate the WCPS query based on the operations
         query = self._generate_wcps_query()
 
-        # Execute the query and return the result
         get_request = ProcessCoverage(self.connection, query=query)
-        # Reset the covExpr attribute so that we can run execute multiple times
         self.covExpr = "$c"
         return get_request.fetch_coverage()
-        #return query
-
+        
     def data(self, cis: str = None) -> dict:
         """
-        Retrieves the description of the datacube from the server.
+        Retrieves information about the datacube.
+
         Args:
-            cis (str): CIS version.
+            cis (str, optional): The CIS version. Defaults to None.
+
         Returns:
-            dict: The description of the datacube.
+            dict: Information about the datacube.
         """
         describe_request = Coverage_id(self.connection, self.coverage_id)
         return describe_request.describe(cis)
 
     def get(self, subset: str = None) -> bytes:
         """
-        Fetches the datacube from the server.
+        Fetches datacube from the server.
+
         Args:
-            subset (str): The subset of the datacube to fetch.
-            output_format (str): The format of the output data.
+            subset (str, optional): The subset of the datacube to fetch. Defaults to None.
+
         Returns:
-            bytes: The datacube in the specified format.
+            bytes: The fetched datacube.
         """
         get_request = Coverages(self.connection, self.coverage_id, subset, self.encode)
         return get_request.fetch_coverage()
 
     def slice(self, slices: dict = None) -> str:
         """
-        Slice the datacube based on the given data.
+        Slices the datacube based on the given data.
+
         Args:
-            slices (dict): A dictionary containing the slices for each axis.
+            slices (dict, optional): A dictionary containing the slices for each axis. Defaults to None.
+
+        Returns:
+            str: The sliced datacube.
+        
+        Raises:
+            ValueError: If an invalid axis name or selection type is provided.
         """
-        # We create a new operation object and append it to the list of operations
         op = Action('subset', [self], slices=slices)
         self.operations.append(op)
         return self
@@ -95,7 +107,13 @@ class Datacube:
 
     def _apply_operation(self, op: Action) -> str:
         """
-        Apply the given operation to the WCPS query.
+        Applies the given operation to the datacube.
+
+        Args:
+            op (Action): The operation to apply.
+
+        Returns:
+            str: The applied operation.
         """
         op_type = op.op_type
         if op_type == 'subset':
@@ -105,28 +123,29 @@ class Datacube:
             scale_factor = op.kwargs.get('scale_factor')
             scale_expr = self._apply_scale(scales=scale_factor)
             query = f"{scale_expr}"
-        # More operations to be added in future sprints
         return query
 
-    # Helper functions to apply subset and scale operations
     def _apply_slice(self, slices: dict = None) -> str:
         """
-        Apply the subset operation to the WCPS query.
-        Args:
-            slices (dict): A dictionary containing the slices for each axis.
-        Returns:
-            str: The subset query.
-        """
+        Applies the slice operation to the datacube.
 
+        Args:
+            slices (dict, optional): A dictionary containing the slices for each axis. Defaults to None.
+
+        Returns:
+            str: The sliced datacube.
+
+        Raises:
+            ValueError: If an invalid axis name or selection type is provided.
+        """
         axis_labels = self._info.keys()
 
         subset_expr = []
         for axis, selection in slices.items():
             if axis not in axis_labels:
                 raise ValueError(f"Invalid axis name: {axis}, possible axes are: {axis_labels}")
-            # Once chected, we apply the subset operation based on the type of selection
             if isinstance(selection, (int, float)):
-                subset_expr.append(f"{axis}({selection})")
+                                subset_expr.append(f"{axis}({selection})")
             elif isinstance(selection, str) or (isinstance(selection, tuple) and all(isinstance(s, str) for s in selection)):
                 if isinstance(selection, tuple):
                     lo, hi = selection
@@ -139,7 +158,6 @@ class Datacube:
                 subset_expr.append(f"{axis}({lo}:{hi})")
             else:
                 raise ValueError(f"Invalid selection type for axis {axis}: {type(selection)}")
-        # Finally, we create the subset query and update the covExpr attribute
         subset_query = f"{self.covExpr}[{', '.join(subset_expr)}]"
         self.covExpr = subset_query
 
@@ -147,12 +165,15 @@ class Datacube:
 
     def encode_format(self, query: str) -> str:
         """
-        Encode the given query with the specified encoding.
+        Encodes the query with the specified encoding format.
+
         Args:
             query (str): The query to encode.
+
         Returns:
             str: The encoded query.
         """
         if self.encode is not None:
             return f"encode({query}, \"{self.encode}\")"
         return query
+
