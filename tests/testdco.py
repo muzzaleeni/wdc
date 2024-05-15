@@ -5,13 +5,28 @@ import unittest
 from unittest.mock import Mock
 from src.dco import Datacube
 
-# Class to test Datacube class and it's methods
 class TestDatacube(unittest.TestCase):
+    """
+    Test case class for the Datacube object.
+
+    This class contains test cases to verify the behavior of the Datacube object
+    and its methods.
+    """
+
     def setUp(self):
-        # Mock DatabaseConnection object
+        """
+        Set up method to create a mock DatabaseConnection object before each test case.
+        """
         self.mock_connection = Mock()
 
     def test_slice_and_execute_image(self):
+        """
+        Test case to verify slicing and executing a Datacube with an image encoding.
+
+        This test case ensures that slicing and executing a Datacube object with an
+        image encoding results in the expected behavior, including calling the
+        describe and fetch_coverage methods of the DatabaseConnection mock.
+        """
         # Mock describe and fetch_coverage methods
         self.mock_connection.describe.return_value = {"axes": ["ansi", "Lat", "Lon"], "shape": [365, 180, 360]}
         self.mock_connection.fetch_coverage.return_value = b'PNG_IMAGE_DATA'
@@ -31,6 +46,13 @@ class TestDatacube(unittest.TestCase):
         self.mock_connection.fetch_coverage.assert_called_once()
 
     def test_slice_and_execute_csv(self):
+        """
+        Test case to verify slicing and executing a Datacube with a CSV encoding.
+
+        This test case ensures that slicing and executing a Datacube object with a
+        CSV encoding results in the expected behavior, including calling the
+        describe and fetch_coverage methods of the DatabaseConnection mock.
+        """
         # Mock describe and fetch_coverage methods
         self.mock_connection.describe.return_value = {"axes": ["ansi", "Lat", "Lon"], "shape": [365, 180, 360]}
         self.mock_connection.fetch_coverage.return_value = b'CSV_DATA'
@@ -48,6 +70,13 @@ class TestDatacube(unittest.TestCase):
         self.mock_connection.fetch_coverage.assert_called_once()
 
     def test_get_image(self):
+        """
+        Test case to verify fetching an image Datacube.
+
+        This test case ensures that fetching an image Datacube object results in
+        the expected behavior, including calling the fetch_coverage method of the
+        DatabaseConnection mock.
+        """
         # Mock fetch_coverage method
         self.mock_connection.fetch_coverage.return_value = b'PNG_IMAGE_DATA'
 
@@ -61,6 +90,13 @@ class TestDatacube(unittest.TestCase):
         self.mock_connection.fetch_coverage.assert_called_once()
 
     def test_modify_and_execute_image(self):
+        """
+        Test case to verify modifying and executing an image Datacube.
+
+        This test case ensures that modifying and executing an image Datacube object
+        results in the expected behavior, including calling the describe and fetch_coverage
+        methods of the DatabaseConnection mock.
+        """
         # Mock describe and fetch_coverage methods
         self.mock_connection.describe.return_value = {"axes": ["ansi", "Lat", "Lon"], "shape": [365, 180, 360]}
         self.mock_connection.fetch_coverage.return_value = b'MODIFIED_PNG_IMAGE_DATA'
