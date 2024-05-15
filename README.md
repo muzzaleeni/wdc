@@ -56,20 +56,15 @@ Follow the usage example to be able to use the functionalities of the package [j
 
 All testing-related files are found in the \tests directory inside \wdc. There are two files, testdbc.py and testdco.py, which test the DatabaseConnection and DataCube classes respectively.
 
-Running the tests is easy. In your terminal, after cloning the repository, simply cd to the sprint_2 folder, and run either of the two files, depending on which class you wish to test:
+You can run the tests from root folder using 
 
 ```
-python3 wdc/tests/testdbc.py
-python3 wdc/tests/testdco.py
-```
+python3 -m unittest tests/testdbc.py
 
-There is a known bug in python where test files cannot read packages outside the test folder. If this happens to you, a simple fix is to change the
+or
 
+python3 -m unittest tests/testdco.py
 ```
-sys.path.append("..")
-```
-
-line (line 3 for testdbc and 4 for testdco) to import the absolute path of sprint_2/wdc.
 
 # Methods', clases' functionality specification
 
