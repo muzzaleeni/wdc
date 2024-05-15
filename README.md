@@ -13,8 +13,8 @@ pip install .
 ```
 
 ## Documentation
-- [Library](https://github.com/Constructor-Uni-SE-non-official/Sprint3_Pair4/tree/main/src/LIBRARY.md) - library specifications
-- [Testing](https://github.com/Constructor-Uni-SE-non-official/Sprint3_Pair4/tree/main/tests/TESTING.md) - testing specifications
+- [Library](https://github.com/Constructor-Uni-SE-non-official/Sprint3_Pair4/tree/main/src/README.md) - library specifications
+- [Testing](https://github.com/Constructor-Uni-SE-non-official/Sprint3_Pair4/tree/main/tests/README.md) - testing specifications
 
 ## Usage
 For a detailed demonstration of our library's usage, please refer to the [Demonstration](https://github.com/Constructor-Uni-SE-non-official/Sprint3_Pair4/blob/main/demo.ipynb). This notebook provides step-by-step examples and practical applications to help you get started quickly and effectively.
